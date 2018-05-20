@@ -5,8 +5,7 @@ public class test {
     public static void main(String[] args) {
         Builder builder=new CharacterABuilder();
         Director director=new Director(builder);
-        director.builderProduct();
-        Product product=builder.create();
+        Product product=director.builderProduct();
         System.out.println("product = " + product.toString());
     }
 }

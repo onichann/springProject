@@ -5,9 +5,10 @@ public class Director {
     public Director(Builder builder){
         this.builder=builder;
     }
-    public void builderProduct(){
+    public Product builderProduct(){
         builder.buildName();
         builder.buildClothes();
         builder.buildWuqi();
+        return builder.create();
     }
 }
