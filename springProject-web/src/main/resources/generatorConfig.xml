@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <properties resource="jdbc.properties"/>
+    <properties resource="src/main/resources/jdbc.properties"/>
     <classPathEntry location="${jdbc_driverLocation}"/>
     <!--指定特定数据库的jdbc驱动jar包的位置-->
 
@@ -54,7 +54,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="user" domainObjectName="UserPO">
+        <table tableName="t_user" domainObjectName="UserPO">
             <generatedKey column="uuid" sqlStatement="SELECT REPLACE(UUID(),'-','') UUID FROM DUAL"/>
         </table>
     </context>

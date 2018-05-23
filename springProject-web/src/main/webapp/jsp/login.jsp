@@ -6,7 +6,8 @@
   Time: 15:29
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file="/base/page/include/include.jsp" %>
 <html>
 <head>
     <title>login</title>
@@ -24,5 +25,28 @@
     <input type="submit" name="" id="1" value="登录">
 </form>
 
+<input type="button" value="点击" onclick="aaa()"/>
+<script>
+   function aaa(){
+       var obj={"name":"姓名","ids":['1','2']}
+       $.ajax({
+           url: "${ctx}/test/checkParamters.do",
+           type: 'POST',
+           contentType:"application/json",
+           data:JSON.stringify(obj),
+           cache: false,
+           async: true,
+           dataType: 'json',
+           success: function (data) {
+              alert(JSON.stringify(data))
+           },
+           error: function (msg) {
+               alert("调用失败");
+           }
+       });
+
+   }
+
+</script>
 </body>
 </html>

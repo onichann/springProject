@@ -39,12 +39,25 @@
     <!--</bean>-->
 
     <!--<bean id="mappingJacksonHttpMessageConverter"-->
-          <!--class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">-->
+          <!--class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
     <!--</bean>-->
 
 
     <!--设置配置方案 -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 注解请求映射
+            默认是ISO-88859-1，避免乱码这里设置为UTF-8 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes" value="text/html;charset=UTF-8" />
+            </bean>
+            <!-- 启动JSON格式的配置,自动将格式转换成JSON格式，不需要其他类 -->
+            <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes" value="application/json;charset=UTF-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
     <!--使用默认的Servlet来响应静态文件-->
     <mvc:default-servlet-handler/>
 
