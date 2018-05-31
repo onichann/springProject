@@ -6,6 +6,7 @@ import com.wt.dao.UserDao;
 import com.wt.mapper.LoginMapper;
 import com.wt.model.LoginLog;
 import com.wt.model.User;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -38,6 +39,9 @@ public class UserService {
 
     public void loginSuccess(User user){
         user.setCredits(user.getCredits()+5);
+        ApplicationContext applicationContext1=SpringCatch.getInstance().applicationContext();
+        ApplicationContext applicationContext2=SpringCatch.getInstance().applicationContext();
+        System.out.println(applicationContext1==applicationContext1);
         LoginLog loginLog= SpringCatch.getInstance().applicationContext().getBean("loginLog",LoginLog.class);
         loginLog.setUserId(user.getUserId());
         loginLog.setLoginDate(user.getLastVisit());

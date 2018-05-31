@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringCatch implements ApplicationContextAware {
 
-    private static ApplicationContext ctx;
+    private static  ApplicationContext ctx;
     private static SpringCatch springCatch=new SpringCatch();
     private SpringCatch(){};
     public static SpringCatch getInstance(){
