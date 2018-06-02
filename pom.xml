@@ -13,7 +13,7 @@
         <module>springProject-utils</module>
     </modules>
 
-    <name>mavenTest v${project.version}</name>
+    <name>springProject v${project.version}</name>
     <url>http://www.google.com</url>
 
     <properties>

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 public class TokenInterceptor extends HandlerInterceptorAdapter {
     private static Logger logger=Logger.getLogger(TokenInterceptor.class);
@@ -32,6 +33,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             if(needLogin!=null&&!needLogin.value()){
                 logger.info(((HandlerMethod) handler).getMethod().getName()+"不需要验证,info");
                 logger.debug(((HandlerMethod) handler).getMethod().getName()+"不需要验证,debug");
+                logger.warn(((HandlerMethod) handler).getMethod().getName()+"不需要验证,debug");
                 logger.error(((HandlerMethod) handler).getMethod().getName()+"不需要验证,error");
                 return true;
             }else{
@@ -50,6 +52,11 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
                     }
 
                 }
+                PrintWriter writer = response.getWriter();
+                response.setContentType("text/html; charset=UTF-8");
+                //writer.write("<font color='red'>用户未登录!</font>");
+                response.getWriter().write("<div style='display:none'>system::_now_need_relogin</div>");
+                response.getWriter().write("<script type='text/javascript'>var win = this;while (win._topMain !== true && win != window.top) {win = win.parent;}win.location='"+request.getContextPath()+"/jsp/errorPage/500.jsp';</script>");
                 return false;
             }
         }

@@ -1,5 +1,6 @@
 package com.wt.controller;
 
+import com.wt.annotation.NeedLogin;
 import com.wt.model.LoginCommand;
 import com.wt.model.User;
 import com.wt.serviceImpl.UserService;
@@ -23,6 +24,7 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping(value = {"/index", "/loginPage", "/"})
+    @NeedLogin(value = false)
     public String loginPage() {
         return "login";
     }
@@ -55,6 +57,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/loginCheck2", method = {RequestMethod.POST, RequestMethod.GET})
+    @NeedLogin(value = false)
     public ModelAndView loginChecke2(LoginCommand loginCommand, HttpServletRequest request, HttpSession session) {
         boolean isValidUser = userService.hasMatchUser2(loginCommand.getUsername(), loginCommand.getPassword());
         if (!isValidUser) return new ModelAndView("login", "error", "用户名密码错误");
