@@ -16,8 +16,8 @@
 <c:if test="${!empty error}">
     <span style="color: red; ">${error}</span>
 </c:if>
-<form action="<c:url value="/login/loginCheck.do"/>" method="post">
-    用户名:<input type="text" name="username" >
+<form action="<c:url value="/login/loginCheck"/>" method="post">
+    用户名:<input type="text" name="username">
     <br>
     密码：
     <input type="password" name="password" id="2">

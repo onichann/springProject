@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+<!--输出到控制台的appender-->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender"><!--appender的名字,供logger或者root调用 -->
+        <param name="encoding" value="utf-8"/><!--编码 -->
+        <param name="target" value="System.out"/><!--输出到控制台 -->
+        <layout class="org.apache.log4j.PatternLayout"><!-- layout表示输出方式,可以多种,class值区分,PatternLayout表示自定义格式-->
+            <param name="ConversionPattern"
+                   value="%d{ISO8601} 耗时：%r [日志来自：%-40.40c{3} 日志类型: %-5p 日志内容：%m]%n"/><!--输出格式 -->
+        </layout>
+    </appender>
+
+    <!--输出到文件的appender,公共的,按日期生成新文件-->
+    <appender name="DEFAULT-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="h:/logs/conmmon-default.log"/>
+        <param name="Append" value="true"/><!--是否项目重启 继续保存之前日志 -->
+        <param name="threshold" value="all"/><!--纪录所有类型日志, -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <param name="encoding" value="utf-8"/><!--编码 -->
+        <layout class="org.apache.log4j.PatternLayout"><!-- layout表示输出方式,可以多种,class值区分,PatternLayout表示自定义格式-->
+            <param name="ConversionPattern"
+                   value="%d{ISO8601} 耗时：%r [日志来自：%-40.40c{3} 日志类型: %-5p 日志内容：%m]%n"/><!--输出格式 -->
+        </layout>
+    </appender>
+
+    <!--输出到文件的appender, info日志-->
+    <appender name="INFO-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="h:/logs/conmmon-info.log"/>
+        <param name="Append" value="true"/><!--是否项目重启 继续保存之前日志 -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <param name="encoding" value="utf-8"/><!--编码 -->
+        <layout class="org.apache.log4j.PatternLayout"><!-- layout表示输出方式,可以多种,class值区分,PatternLayout表示自定义格式-->
+            <param name="ConversionPattern"
+                   value="%d{ISO8601} 耗时：%r [日志来自：%-40.40c{3} 日志类型: %-5p 日志内容：%m]%n"/><!--输出格式 -->
+        </layout>
+        <!--只记录info信息,就做如下设置-->
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMax" value="info"/>
+            <param name="LevelMin" value="info"/>
+        </filter>
+    </appender>
+
+    <!--输出到文件的appender,error日志-->
+    <appender name="ERROR-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="h:/logs/conmmon-error.log"/>
+        <param name="Append" value="true"/><!--是否项目重启 继续保存之前日志 -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <param name="encoding" value="utf-8"/><!--编码 -->
+        <layout class="org.apache.log4j.PatternLayout"><!-- layout表示输出方式,可以多种,class值区分,PatternLayout表示自定义格式-->
+            <param name="ConversionPattern"
+                   value="%d{ISO8601} 耗时：%r [日志来自：%-40.40c{3} 日志类型: %-5p 日志内容：%m]%n"/><!--输出格式 -->
+        </layout>
+        <!--只记录error信息,就做如下设置-->
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMax" value="error"/>
+            <param name="LevelMin" value="error"/>
+        </filter>
+    </appender>
+
+    <!--输出到文件的appender,warn日志-->
+    <appender name="WARN-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="h:/logs/conmmon-warn.log"/>
+        <param name="Append" value="true"/><!--是否项目重启 继续保存之前日志 -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <param name="encoding" value="utf-8"/><!--编码 -->
+        <layout class="org.apache.log4j.PatternLayout"><!-- layout表示输出方式,可以多种,class值区分,PatternLayout表示自定义格式-->
+            <param name="ConversionPattern"
+                   value="%d{ISO8601} 耗时：%r [日志来自：%-40.40c{3} 日志类型: %-5p 日志内容：%m]%n"/><!--输出格式 -->
+        </layout>
+        <!--只记录warn信息,就做如下设置-->
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMax" value="warn"/>
+            <param name="LevelMin" value="warn"/>
+        </filter>
+    </appender>
+
+
+    <!--info log-->
+    <logger name="whu.lmars.indoorparking" additivity="false"><!--为false的时候 限制了叠加性  即此时子logger不会继承root的appender -->
+        <level value="info"/><!-- ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF -->
+        <appender-ref ref="INFO-APPENDER"/>
+        <appender-ref ref="ERROR-APPENDER"/>
+        <appender-ref ref="WARN-APPENDER"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+    <root>
+        <!--<level value="ALL"/>--><!--默认是debug -->
+        <appender-ref ref="DEFAULT-APPENDER"/>
+    </root>
+
+
+</log4j:configuration>

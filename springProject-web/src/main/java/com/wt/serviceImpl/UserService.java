@@ -1,6 +1,6 @@
-package com.wt.service;
+package com.wt.serviceImpl;
 
-import com.wt.SpringCatch;
+import com.wt.common.SpringCatch;
 import com.wt.dao.LoginDao;
 import com.wt.dao.UserDao;
 import com.wt.mapper.LoginMapper;

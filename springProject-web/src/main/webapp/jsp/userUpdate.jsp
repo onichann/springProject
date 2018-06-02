@@ -16,7 +16,7 @@
     <title>update</title>
 </head>
 <body>
-<form action="${ctx}/user/update.do" method="post">
+<form action="${ctx}/user/update" method="post">
     <table border="1" align="center" width="50%">
         <tr>
             <td colspan="2" align="center"><b>用户信息</b></td>

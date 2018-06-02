@@ -14,7 +14,7 @@
     <title>userList</title>
 </head>
 <body>
-<h3>欢迎${userList[0].userName }登陆</h3> <a href="<%=request.getContextPath()%>/user/toAdd.do">add</a>
+<h3>欢迎${userList[0].userName }登陆</h3> <a href="<%=request.getContextPath()%>/user/toAdd">add</a>
     <table border="1" align="center">
         <tr>
             <td>编号</td>
@@ -33,12 +33,12 @@
                 <td><c:out value="${u.credits }"></c:out></td>
                 <td><c:out value="${u.lastIp }"></c:out></td>
                 <td><fmt:formatDate value="${u.lastVisit }" pattern="yyyy-MM-dd"/></td>
-                <td><a href="<%=request.getContextPath()%>/user/toUpdate.do?id=${u.userId}">修改</a>|<a href="<%=request.getContextPath()%>/user/delete.do?id=${u.userId}">删除</a></td>
+                <td><a href="<%=request.getContextPath()%>/user/toUpdate?id=${u.userId}">修改</a>|<a href="<%=request.getContextPath()%>/user/delete.do?id=${u.userId}">删除</a></td>
             </tr>
         </c:forEach>
 
     </table>
-<form id="formid" action="<%=request.getContextPath()%>/user/upload.do" method="post" enctype="multipart/form-data">
+<form id="formid" action="<%=request.getContextPath()%>/user/upload" method="post" enctype="multipart/form-data">
     <input name="fileId" value="1111" type="hidden"/>
     <input type="file" name="file" />
     <input type="submit" value="submit" multiple="multiple">

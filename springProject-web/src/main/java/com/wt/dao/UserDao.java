@@ -1,6 +1,6 @@
 package com.wt.dao;
 
-import com.wt.SpringCatch;
+import com.wt.common.SpringCatch;
 import com.wt.model.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
