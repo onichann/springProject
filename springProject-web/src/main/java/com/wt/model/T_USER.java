@@ -1,4 +1,4 @@
-package com.wt.generator;
+package com.wt.model;
 
 public class T_USER {
     private String featid;
