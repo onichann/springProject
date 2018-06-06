@@ -7,7 +7,7 @@
     <!--加载spring配置文件 classpath 指类路径下-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>WEB-INF/applicationContext*.xml</param-value>
+        <param-value>classpath*:applicationContext*.xml</param-value>
     </context-param>
 
     <!--启动spring容器的监听器，它会引用上述的上下文参数获取的spring配置文件地址-->
@@ -19,19 +19,18 @@
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <!-- 可以自定义servlet.xml配置文件的位置和名称，默认为WEB-INF目录下，名称为[<servlet-name>]-servlet.xml，如spring-servlet.xml
+         <!--可以自定义servlet.xml配置文件的位置和名称，默认为WEB-INF目录下，名称为[<servlet-name>]-servlet.xml，如spring-servlet.xml-->
             <init-param>
                 <param-name>contextConfigLocation</param-name>
-                <param-value>/WEB-INF/spring-servlet.xml</param-value>
+                <param-value>classpath*:dispatcher-servlet.xml</param-value>
             </init-param>
-        -->
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <!--springMVC 处理的url-->
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <!-- 中文编码 -->
@@ -51,5 +50,63 @@
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!--xss-->
+    <filter>
+        <filter-name>xssFilter</filter-name>
+        <filter-class>com.wt.filter.xss.XSSFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>xssFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--欢迎界面-->
+    <welcome-file-list>
+        <welcome-file>/login/loginPage</welcome-file>
+    </welcome-file-list>
+
+    <!--内置监控界面使用配置-->
+    <!--访问/druid/index.html-->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+
+    <!--关于log4j的相关配置-->
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:log4j.xml</param-value>
+    </context-param>
+    <!--加载log4j配置文件-->
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
+
+    <!-- 配置session超时时间，单位分钟 -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <!-- 错误跳转页面 -->
+    <error-page>
+        <!-- 路径不正确 -->
+        <error-code>404</error-code>
+        <location>/jsp/errorPage/404.jsp</location>
+    </error-page>
+    <error-page>
+        <!-- 没有访问权限，访问被禁止 -->
+        <error-code>405</error-code>
+        <location>/jsp/errorPage/404.jsp</location>
+    </error-page>
+    <error-page>
+        <!-- 内部错误 -->
+        <error-code>500</error-code>
+        <location>/jsp/errorPage/404.jsp</location>
+    </error-page>
 
 </web-app>

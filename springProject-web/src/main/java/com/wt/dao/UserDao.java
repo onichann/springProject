@@ -1,7 +1,8 @@
 package com.wt.dao;
 
-import com.wt.SpringCatch;
+import com.wt.common.SpringCatch;
 import com.wt.model.User;
+import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,11 @@ public class UserDao {
 
     public User findUserByUserName(String userName){
         String sqlStr="select * from t_user where username=?";
+
+        ApplicationContext applicationContext1=SpringCatch.getInstance().applicationContext();
+        ApplicationContext applicationContext2=SpringCatch.getInstance().applicationContext();
+        System.out.println(applicationContext1==applicationContext1);
+
         final User user = SpringCatch.getInstance().applicationContext().getBean("user",User.class);
         jdbcTemplate.query(sqlStr, new Object[]{userName}, new RowCallbackHandler() {
             @Override

@@ -14,7 +14,7 @@
     <title>add</title>
 </head>
 <body>
-<form action="<%=request.getContextPath()%>/user/add.do" method="post">
+<form action="<%=request.getContextPath()%>/user/add" method="post">
     <table border="1" align="center" width="50%">
         <tr>
             <td colspan="2" align="center"><b>用户信息</b></td>

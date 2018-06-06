@@ -53,7 +53,7 @@
         </javaClientGenerator>
 
         <!-- 配置表信息 -->
-        <table schema="db1" tableName="t_user"
+        <table schema="db" tableName="t_user"
                domainObjectName="T_USER" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="true"
                enableUpdateByExample="false">

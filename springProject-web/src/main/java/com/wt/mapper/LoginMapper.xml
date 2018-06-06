@@ -4,7 +4,7 @@
 
 	<cache />
 
-	<resultMap id="users" type="TUser">
+	<resultMap id="users" type="User">
 		<id property="userId" column="userId" javaType="String" jdbcType="VARCHAR"/>
 		<result property="userName" column="userName" javaType="String" jdbcType="VARCHAR"/>
 		<result property="password" column="password" javaType="String" jdbcType="VARCHAR"/>
@@ -14,11 +14,11 @@
 		select * from t_user where username=#{userName} and password=#{password}
 	</select>
 
-	<select id="selectAllUsers" resultMap="users">
+	<select id="selectAllUsers" resultType="TUser">
 			select * from t_user
 	</select>
 
-	<select id="seletOneUser" resultType="TUser" >
+	<select id="seletOneUser" resultType="User" >
 		select * from t_user where userid=#{userid}
 	</select>
 
@@ -27,7 +27,7 @@
 		insert into t_user(userid,username,password) values(#{id},#{userName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR})
 	</insert>
 
-	<update id="updateUser" parameterType="TUser">
+	<update id="updateUser" parameterType="User">
 		UPDATE  t_user SET username=#{userName,jdbcType=VARCHAR} , password=#{password,jdbcType=VARCHAR}
 
 		where 	userid=#{userId,jdbcType=VARCHAR}

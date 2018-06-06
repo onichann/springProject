@@ -1,26 +1,22 @@
 package com.wt.generator;
 
-import java.util.Date;
-
 public class T_USER {
-    private String userid;
+    private String featid;
 
     private String username;
 
     private String password;
 
-    private Integer credits;
+    private String userid;
 
-    private String lastip;
+    private Integer age;
 
-    private Date lastvisit;
-
-    public String getUserid() {
-        return userid;
+    public String getFeatid() {
+        return featid;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid == null ? null : userid.trim();
+    public void setFeatid(String featid) {
+        this.featid = featid == null ? null : featid.trim();
     }
 
     public String getUsername() {
@@ -39,27 +35,19 @@ public class T_USER {
         this.password = password == null ? null : password.trim();
     }
 
-    public Integer getCredits() {
-        return credits;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setCredits(Integer credits) {
-        this.credits = credits;
+    public void setUserid(String userid) {
+        this.userid = userid == null ? null : userid.trim();
     }
 
-    public String getLastip() {
-        return lastip;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setLastip(String lastip) {
-        this.lastip = lastip == null ? null : lastip.trim();
-    }
-
-    public Date getLastvisit() {
-        return lastvisit;
-    }
-
-    public void setLastvisit(Date lastvisit) {
-        this.lastvisit = lastvisit;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }
