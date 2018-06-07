@@ -25,6 +25,9 @@
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis.spring.version>1.2.3</mybatis.spring.version>
         <commons-logging.version>1.2</commons-logging.version>
+        <!-- redis 版本 -->
+        <redis.version>2.9.0</redis.version>
+        <spring.redis.version>2.0.7.RELEASE</spring.redis.version>
     </properties>
 
     <dependencyManagement>
@@ -193,7 +196,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
 
@@ -273,6 +276,19 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.21</version>
         </dependency>
+
+        <!--redis-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${redis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${spring.redis.version}</version>
+        </dependency>
+        <!--redis-->
 
     </dependencies>
 
