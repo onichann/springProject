@@ -28,6 +28,7 @@
         <property name="locations">
             <list>
                 <value>classpath:dataSourse.properties</value>
+                <value>classpath*:redis.properties</value>
             </list>
         </property>
     </bean>
@@ -53,4 +54,5 @@
 
     <import resource="applicationContext-mybatis.xml"/>
     <import resource="applicationContext-service.xml"/>
+    <import resource="applicationContext-redis.xml"/>
 </beans>
