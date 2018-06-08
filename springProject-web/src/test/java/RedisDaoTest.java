@@ -13,8 +13,8 @@ public class RedisDaoTest {
 //        redisDao.save();
 //        System.out.println(redisDao.getUser(1));
 //
-        Jedis jedis=new Jedis("127.0.0.1",6397);
-//        jedis.auth("wutong");
+        Jedis jedis=new Jedis("127.0.0.1",6379);
+        jedis.auth("wutong");
         System.out.println(jedis.ping());
     }
 
