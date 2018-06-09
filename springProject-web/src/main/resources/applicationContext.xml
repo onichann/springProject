@@ -54,5 +54,5 @@
 
     <import resource="applicationContext-mybatis.xml"/>
     <import resource="applicationContext-service.xml"/>
-    <import resource="applicationContext-redis.xml"/>
+    <import resource="applicationContext-springRedis.xml"/>
 </beans>

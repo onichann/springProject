@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component("tUser")
 @Scope("prototype")
-public class T_USER {
+public class TUser {
     private String featid;
 
     private String username;
