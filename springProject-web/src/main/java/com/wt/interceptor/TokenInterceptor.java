@@ -55,8 +55,8 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
                 PrintWriter writer = response.getWriter();
                 response.setContentType("text/html; charset=UTF-8");
                 //writer.write("<font color='red'>用户未登录!</font>");
-                response.getWriter().write("<div style='display:none'>system::_now_need_relogin</div>");
-                response.getWriter().write("<script type='text/javascript'>var win = this;while (win._topMain !== true && win != window.top) {win = win.parent;}win.location='"+request.getContextPath()+"/jsp/errorPage/500.jsp';</script>");
+                writer.write("<div style='display:none'>system::_now_need_relogin</div>");
+                writer.write("<script type='text/javascript'>var win = this;while (win._topMain !== true && win != window.top) {win = win.parent;}win.location='"+request.getContextPath()+"/jsp/errorPage/500.jsp';</script>");
                 return false;
             }
         }
