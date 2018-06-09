@@ -2,6 +2,7 @@ import com.alibaba.fastjson.JSON;
 import com.wt.common.SpringCatch;
 import com.wt.core.IDUtils;
 import com.wt.daoImpl.RedisDaoImpl;
+import com.wt.manager.RedisManager;
 import com.wt.model.TUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,9 +17,11 @@ public class RedisDaoTest {
 
     @Autowired
     private RedisDaoImpl redisDao;
+    @Autowired
+    private RedisManager redisManager;
 
     @Test
-    public void test(){
+    public void testRedisDaoImpl(){
         TUser tUser=SpringCatch.getInstance().applicationContext().getBean("tUser",TUser.class);
         tUser.setFeatid(IDUtils.getUUID());
         tUser.setUserid("iriya");
@@ -30,9 +33,18 @@ public class RedisDaoTest {
     }
 
     @Test
-    public void test2(){
+    public void testJedis(){
         Jedis jedis=new Jedis("127.0.0.1",6379);
         jedis.auth("wutong");
         System.out.println(jedis.ping());
+    }
+
+    @Test
+    public void testRedisManager(){
+        redisManager.set("time","2018-02-02");
+        System.out.println(redisManager.get("time"));
+        redisManager.set("number", "10");
+        System.out.println(redisManager.incrBy("number",8L));
+        //System.out.println(redisManager.incrBy("number",7L));
     }
 }
