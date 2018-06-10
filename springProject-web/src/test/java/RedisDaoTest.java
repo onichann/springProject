@@ -7,9 +7,14 @@ import com.wt.model.TUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import redis.clients.jedis.Jedis;
+
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:applicationContext.xml")
@@ -40,11 +45,27 @@ public class RedisDaoTest {
     }
 
     @Test
-    public void testRedisManager(){
-        redisManager.set("time","2018-02-02");
-        System.out.println(redisManager.get("time"));
-        redisManager.set("number", "10");
-        System.out.println(redisManager.incrBy("number",8L));
-        //System.out.println(redisManager.incrBy("number",7L));
+    public void testRedisManager_String() throws InterruptedException {
+//        redisManager.set("time","2018-02-02");
+//        System.out.println(redisManager.get("time"));
+//        redisManager.set("number", "10");
+//        System.out.println(redisManager.incrBy("number",8L));
+//        System.out.println(redisManager.decrBy("number",7L));
+        //redisManager.set("number_time","2018-01-01",100L);
+        //TimeUnit.SECONDS.sleep(10);
+        System.out.println("time:"+redisManager.getExpire("number"));
     }
+
+    @Test
+    public void testRedisManager_map(){
+//        System.out.println(redisManager.hget("map","field1"));
+        //redisManager.hset("cat","name","小仓唯");
+//        System.out.println(redisManager.hget("map","field1"));
+        redisManager.hdecr("cat","age",5);
+
+        System.out.println(redisManager.hget("cat","age"));
+    }
+
+
+
 }
