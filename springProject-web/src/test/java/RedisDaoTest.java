@@ -61,10 +61,14 @@ public class RedisDaoTest {
 //        System.out.println(redisManager.hget("map","field1"));
         //redisManager.hset("cat","name","小仓唯");
 //        System.out.println(redisManager.hget("map","field1"));
+        redisManager.hset("cat","age","10");
         redisManager.hdecr("cat","age",5);
 
         System.out.println(redisManager.hget("cat","age"));
     }
+
+
+
 
 
 
