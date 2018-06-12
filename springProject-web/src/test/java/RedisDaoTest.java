@@ -67,7 +67,12 @@ public class RedisDaoTest {
         System.out.println(redisManager.hget("cat","age"));
     }
 
-
+    @Test
+    public void testRedisManager_list(){
+        System.out.println(redisManager.lGet("list",0,-1));
+        System.out.println(redisManager.lRemove("list",0,"1"));
+        System.out.println(redisManager.lGet("list",0,-1));
+    }
 
 
 
