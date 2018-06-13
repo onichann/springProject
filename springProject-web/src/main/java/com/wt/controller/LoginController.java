@@ -3,7 +3,7 @@ package com.wt.controller;
 import com.wt.annotation.NeedLogin;
 import com.wt.model.LoginCommand;
 import com.wt.model.User;
-import com.wt.serviceImpl.UserService;
+import com.wt.service.Impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

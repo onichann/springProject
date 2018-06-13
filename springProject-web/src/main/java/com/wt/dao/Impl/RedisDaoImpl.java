@@ -1,21 +1,15 @@
-package com.wt.daoImpl;
+package com.wt.dao.Impl;
 
 import com.alibaba.fastjson.JSON;
-import com.wt.common.SpringCatch;
 import com.wt.dao.RedisDao;
 import com.wt.model.TUser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
 
 @Repository
 public class RedisDaoImpl implements RedisDao {

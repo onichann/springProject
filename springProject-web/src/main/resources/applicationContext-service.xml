@@ -13,7 +13,7 @@
 
     <!--aop提供事务管理增强 ，让service包下所有bean的方法拥有事务-->
     <aop:config proxy-target-class="true">
-        <aop:pointcut id="serviceMethod" expression="execution(* com.wt.service..*(..))||execution(* com.wt.serviceImpl..*(..))"/>
+        <aop:pointcut id="serviceMethod" expression="execution(* com.wt.service..*(..))||execution(* com.wt.service.Impl..*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
     </aop:config>
 

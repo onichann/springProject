@@ -1,20 +1,15 @@
 import com.alibaba.fastjson.JSON;
 import com.wt.common.SpringCatch;
 import com.wt.core.IDUtils;
-import com.wt.daoImpl.RedisDaoImpl;
+import com.wt.dao.Impl.RedisDaoImpl;
 import com.wt.manager.RedisManager;
 import com.wt.model.TUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 import redis.clients.jedis.Jedis;
-
-import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:applicationContext.xml")
