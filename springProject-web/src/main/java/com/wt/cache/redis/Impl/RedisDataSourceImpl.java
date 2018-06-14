@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
+import java.util.ArrayList;
+
 public class RedisDataSourceImpl implements RedisDataSource {
 
     @Autowired
@@ -12,12 +14,14 @@ public class RedisDataSourceImpl implements RedisDataSource {
 
     @Override
     public ShardedJedis getRedisClient() {
-        ShardedJedis shardedJedis=null;
+        ShardedJedis shardedJedis = null;
+
         try {
-            shardedJedis=shardedJedisPool.getResource();
+            shardedJedis = shardedJedisPool.getResource();
+
             return shardedJedis;
-        }catch (Exception e){
-            if(shardedJedis!=null){
+        } catch (Exception e) {
+            if (shardedJedis != null) {
                 shardedJedis.close();
             }
         }
@@ -33,4 +37,5 @@ public class RedisDataSourceImpl implements RedisDataSource {
     public void returnResource(ShardedJedis shardedJedis, boolean broken) {
         shardedJedis.close();
     }
+    
 }
