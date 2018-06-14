@@ -2,6 +2,7 @@ import com.alibaba.fastjson.JSON;
 import com.wt.common.SpringCatch;
 import com.wt.core.IDUtils;
 import com.wt.dao.Impl.RedisDaoImpl;
+import com.wt.manager.RedisDataSourceManager;
 import com.wt.manager.RedisManager;
 import com.wt.model.TUser;
 import org.junit.Test;
@@ -19,6 +20,9 @@ public class RedisDaoTest {
     private RedisDaoImpl redisDao;
     @Autowired
     private RedisManager redisManager;
+
+    @Autowired
+    private RedisDataSourceManager redisDataSourceManager;
 
     @Test
     public void testRedisDaoImpl(){
@@ -69,6 +73,11 @@ public class RedisDaoTest {
         System.out.println(redisManager.lGet("list",0,-1));
     }
 
+    @Test
+    public void testRedisDataSourceManager(){
+        redisDataSourceManager.set("testD","qwerwo我");
+        System.out.println(redisDataSourceManager.get("testD"));
+    }
 
 
 

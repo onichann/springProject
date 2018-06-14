@@ -31,6 +31,9 @@
             <list>
                 <bean class="redis.clients.jedis.JedisShardInfo">
                     <constructor-arg index="0" value="${redis.uri.0}" />
+                    <!--<constructor-arg name="host" value="${redis.host}" />-->
+                    <!--<constructor-arg name="port" value="${redis.port}" />-->
+                    <!--<constructor-arg name="timeout" value="${redis.timeout}" />-->
                 </bean>
             </list>
         </constructor-arg>
