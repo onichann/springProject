@@ -13,6 +13,8 @@
     <bean id="jedispoolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <!-- 最大空闲数 -->
         <property name="maxIdle" value="${redis.maxIdle}" />
+        <!--最小空闲数-->
+        <property name="minIdle" value="${redis.minIdle}"/>
         <!-- 最大空连接数 -->
         <property name="maxTotal" value="${redis.maxTotal}" />
         <!-- 最大等待时间 -->
@@ -28,9 +30,7 @@
         <constructor-arg index="1">
             <list>
                 <bean class="redis.clients.jedis.JedisShardInfo">
-                    <constructor-arg name="host" value="${redis.host}" />
-                    <constructor-arg name="port" value="${redis.port}" />
-                    <constructor-arg name="timeout" value="${redis.timeout}" />
+                    <constructor-arg index="0" value="${redis.uri.0}" />
                 </bean>
             </list>
         </constructor-arg>
