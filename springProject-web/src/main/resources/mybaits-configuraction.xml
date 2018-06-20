@@ -7,7 +7,6 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias type="com.wt.model.User" alias="User"/>
 		<typeAlias type="com.wt.model.TUser" alias="TUser"/>
 	</typeAliases>
 	<!--<mappers>-->

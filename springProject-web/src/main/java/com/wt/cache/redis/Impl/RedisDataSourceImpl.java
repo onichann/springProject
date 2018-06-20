@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
-import java.util.ArrayList;
-
 @Component("redisDataSource")
 public class RedisDataSourceImpl implements RedisDataSource {
 
@@ -20,7 +18,6 @@ public class RedisDataSourceImpl implements RedisDataSource {
 
         try {
             shardedJedis = shardedJedisPool.getResource();
-
             return shardedJedis;
         } catch (Exception e) {
             if (shardedJedis != null) {
@@ -32,11 +29,17 @@ public class RedisDataSourceImpl implements RedisDataSource {
 
     @Override
     public void returnResource(ShardedJedis shardedJedis) {
+//        shardedJedisPool.returnResource(shardedJedis);
         shardedJedis.close();
     }
 
     @Override
     public void returnResource(ShardedJedis shardedJedis, boolean broken) {
+//        if (broken) {
+//            shardedJedisPool.returnBrokenResource(shardedJedis);
+//        } else {
+//            shardedJedisPool.returnResource(shardedJedis);
+//        }
         shardedJedis.close();
     }
     

@@ -23,11 +23,11 @@
         </tr>
         <tr>
             <td>用户编号</td>
-            <td><input type="text" name="userId" value=${user.userId } readonly ></td>
+            <td><input type="text" name="featid" value=${user.featid } readonly ></td>
         </tr>
         <tr>
             <td>用户名</td>
-            <td><input type="text" name="userName" value=${user.userName }></td>
+            <td><input type="text" name="username" value=${user.username }></td>
         </tr>
         <tr>
             <td>密码</td>

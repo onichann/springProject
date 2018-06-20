@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 
-@Repository
+@Repository("redisDao")
 public class RedisDaoImpl implements RedisDao {
 
     @Resource(name = "redisTemplate")

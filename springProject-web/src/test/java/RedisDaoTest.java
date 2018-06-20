@@ -26,7 +26,7 @@ public class RedisDaoTest {
 
     @Test
     public void testRedisDaoImpl(){
-        TUser tUser=SpringCatch.getInstance().applicationContext().getBean("tUser",TUser.class);
+        TUser tUser=SpringCatch.getApplicationContext().getBean("tUser",TUser.class);
         tUser.setFeatid(IDUtils.getUUID());
         tUser.setUserid("iriya");
         tUser.setPassword("000000");

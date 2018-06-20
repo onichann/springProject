@@ -3,9 +3,11 @@ package com.wt.model;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Component("tUser")
 @Scope("prototype")
-public class TUser {
+public class TUser implements Serializable{
     private String featid;
 
     private String username;

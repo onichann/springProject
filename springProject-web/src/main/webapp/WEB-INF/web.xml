@@ -31,6 +31,7 @@
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
+        <!--<url-pattern>*.do</url-pattern>-->
     </servlet-mapping>
 
     <!-- 中文编码 -->
@@ -101,12 +102,12 @@
     <error-page>
         <!-- 没有访问权限，访问被禁止 -->
         <error-code>405</error-code>
-        <location>/jsp/errorPage/404.jsp</location>
+        <location>/jsp/errorPage/405.jsp</location>
     </error-page>
     <error-page>
         <!-- 内部错误 -->
         <error-code>500</error-code>
-        <location>/jsp/errorPage/404.jsp</location>
+        <location>/jsp/errorPage/500.jsp</location>
     </error-page>
 
 </web-app>
