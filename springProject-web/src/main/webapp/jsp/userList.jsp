@@ -14,7 +14,7 @@
     <title>userList</title>
 </head>
 <body>
-<h3>欢迎${sessionScope.user.username }登陆</h3>
+<h3>欢迎${sessionScope.user.username }登陆 <a href="<%=request.getContextPath()%>/login/loginOut" style="align-content: flex-end">登出</a></h3>
 
 <a href="<%=request.getContextPath()%>/user/toAdd">add</a>
     <table border="1" align="center">

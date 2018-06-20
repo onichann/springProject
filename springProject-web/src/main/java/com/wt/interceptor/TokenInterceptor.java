@@ -40,16 +40,19 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
                 //需要验证登录
                 if(user==null){
                     Cookie[] cookies=request.getCookies();
+//                    boolean userCookie=false;
                     if(ArrayUtils.isNotEmpty(cookies)){
                         for (Cookie cookie : cookies) {
                             if(Constants.userCookie.equals(cookie.getName())){
+//                                userCookie=true;
                                 String userStr=cookie.getValue();
-                                TUser user1 = JSON.parseObject(userStr,TUser.class);
-                                request.getSession().setAttribute(Constants.user,user1);
+                                user = JSON.parseObject(userStr,TUser.class);
+                                request.getSession().setAttribute(Constants.user,user);
                                 break;
                             }
                         }
                     }
+                    if(user!=null) return true;
                     PrintWriter writer = response.getWriter();
                     response.setContentType("text/html; charset=UTF-8");
                     //writer.write("<font color='red'>用户未登录!</font>");
