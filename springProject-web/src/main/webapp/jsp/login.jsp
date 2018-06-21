@@ -16,7 +16,7 @@
 <c:if test="${!empty error}">
     <span style="color: red; ">${error}</span>
 </c:if>
-<form action="<c:url value="/login/loginCheck2"/>" method="post">
+<form action="<c:url value="/login/loginCheck"/>" method="post">
     用户名:<input type="text" name="username">
     <br>
     密码：
@@ -25,12 +25,12 @@
     <input type="submit" name="" id="1" value="登录">
 </form>
 
-<input type="button" value="点击" onclick="aaa()"/>
+<input type="button" value="接口数据传递" onclick="aaa()" style="display: none"/>
 <script>
    function aaa(){
        var obj={"name":"姓名","ids":['1','2']}
        $.ajax({
-           url: "${ctx}/test/checkParamters.do",
+           url: "${ctx}/test/checkParamters",
            type: 'POST',
            contentType:"application/json",
            data:JSON.stringify(obj),

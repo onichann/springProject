@@ -1,6 +1,6 @@
 package com.wt.model;
 
-public class LoginCommand {
+public class LoginInfo {
     private String username;
     private String password;
 

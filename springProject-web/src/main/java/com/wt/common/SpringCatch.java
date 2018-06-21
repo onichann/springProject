@@ -9,20 +9,14 @@ import org.springframework.stereotype.Component;
 public class SpringCatch implements ApplicationContextAware {
 
     private static  ApplicationContext ctx;
-    private static SpringCatch springCatch=new SpringCatch();
-    private SpringCatch(){};
-    public static SpringCatch getInstance(){
-        return springCatch;
-    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.ctx=applicationContext;
     }
 
-    public ApplicationContext applicationContext(){
+    public static ApplicationContext getApplicationContext(){
         return ctx;
     }
-
 
 }

@@ -1,6 +1,13 @@
-package com.wt.generator;
+package com.wt.model;
 
-public class T_USER {
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
+
+@Component("tUser")
+@Scope("prototype")
+public class TUser implements Serializable{
     private String featid;
 
     private String username;
