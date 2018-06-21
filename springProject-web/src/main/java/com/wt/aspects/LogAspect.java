@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.util.ObjectUtils;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -13,6 +13,7 @@ import org.springframework.util.ObjectUtils;
  * https://blog.csdn.net/it_zouxiang/article/details/52576917
  */
 @Aspect
+@Component
 public class LogAspect {
 
     private static final Logger logger= Logger.getLogger(LogAspect.class);
@@ -34,12 +35,13 @@ public class LogAspect {
         try {
             System.out.println("=============Around目标方法执行前================");
             result=proceedingJoinPoint.proceed();
+            System.out.println("=============Around目标方法执行test后================");
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             System.out.println("==========Around目标方法执行异常=====================");
         }
         System.out.println("=====Around目标方法执后=========");
-        return result;
+        return result+"11";
     }
 
     @After("logPonintCut()")
