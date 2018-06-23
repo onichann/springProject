@@ -13,8 +13,8 @@ public class LogAspectTest {
     private TestServiceImpl testServiceImpl;
 
     @Test
-    public void doTest(){
+    public void doTest()  {
         String result=testServiceImpl.doTest("wutong","22");
-        System.out.println("result====="+result);
     }
+
 }
