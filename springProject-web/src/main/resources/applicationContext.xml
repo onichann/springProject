@@ -56,4 +56,5 @@
     <import resource="applicationContext-service.xml"/>
     <import resource="applicationContext-springRedis.xml"/>
     <import resource="applicationContext-redis.xml"/>
+    <import resource="applicationContext-quartzRAM.xml"/>
 </beans>
