@@ -1,15 +1,19 @@
 import com.wt.quartz.job.TestJDBCJob;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath*:applicationContext.xml")
 public class QuartJDBCTest {
 
-    public static void main(String[] args) {
-        ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext-quartzJDBC.xml");
-       // Scheduler scheduler = (StdScheduler)ac.getBean("scheduler");
-
+    @Test
+    public void test(){
         startSchedule();
     }
 
@@ -27,7 +31,7 @@ public class QuartJDBCTest {
             // 设置执行次数
             //.repeatSecondlyForTotalCount(5);
 
-            CronScheduleBuilder builder = CronScheduleBuilder.cronSchedule("0/2 * * * * ?");
+            CronScheduleBuilder builder = CronScheduleBuilder.cronSchedule("0/10 * * * * ?");
             // 2、创建Trigger
             Trigger trigger = TriggerBuilder.newTrigger()
                     .withIdentity("trigger1_1", "tGroup1").startNow()
@@ -43,5 +47,12 @@ public class QuartJDBCTest {
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
+    }
+
+        public static void main(String[] args) {
+            ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext-quartzJDBC.xml");
+       // Scheduler scheduler = (StdScheduler)ac.getBean("scheduler");
+
+        startSchedule();
     }
 }

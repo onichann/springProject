@@ -14,9 +14,11 @@
     <!--
         持久化数据配置，需要添加quartz.properties
      -->
-    <bean name="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    <bean name="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" >
+        <property name="dataSource" ref ="dataSource" />
         <property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
-        <property name="configLocation" value="classpath:quartz.properties"/>
+        <property name="configLocation" value="classpath:quartzJDBC.properties"/>
+        <property name="autoStartup" value="true"/>
     </bean>
 
 </beans>

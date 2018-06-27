@@ -7,7 +7,7 @@
     <!--加载spring配置文件 classpath 指类路径下-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath*:applicationContext*.xml</param-value>
+        <param-value>classpath*:applicationContext.xml</param-value>
     </context-param>
 
     <!--启动spring容器的监听器，它会引用上述的上下文参数获取的spring配置文件地址-->

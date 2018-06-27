@@ -11,5 +11,6 @@ public class TestJDBCJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+"  JDBCJob");
+        System.out.println("hello QuartzJDBC1");
     }
 }
