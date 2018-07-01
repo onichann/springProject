@@ -1,11 +1,12 @@
 package com.wt.controller;
 
-import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
 import com.wt.annotation.NeedLogin;
 import com.wt.core.Constants;
 import com.wt.model.LoginInfo;
 import com.wt.model.TUser;
 import com.wt.service.UserService;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,7 +41,8 @@ public class LoginController {
         TUser tUser= userService.selectOneUser(loginInfo.getUsername(), loginInfo.getPassword());
         if (tUser==null) return new ModelAndView("login", "error", "用户名密码错误");
         session.setAttribute(Constants.user,tUser);
-        Cookie cookie=new Cookie(Constants.userCookie, JSON.toJSONString(tUser));
+        Gson gson=new Gson();
+        Cookie cookie=new Cookie(Constants.userCookie, StringEscapeUtils.escapeHtml4(gson.toJson(tUser)));
         cookie.setMaxAge(30*60);
         cookie.setPath("/");
         response.addCookie(cookie);

@@ -5,6 +5,7 @@ import com.wt.annotation.NeedLogin;
 import com.wt.core.Constants;
 import com.wt.model.TUser;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -46,7 +47,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
                             if(Constants.userCookie.equals(cookie.getName())){
 //                                userCookie=true;
                                 String userStr=cookie.getValue();
-                                user = JSON.parseObject(userStr,TUser.class);
+                                user = JSON.parseObject(StringEscapeUtils.unescapeHtml4(userStr),TUser.class);
                                 request.getSession().setAttribute(Constants.user,user);
                                 break;
                             }
