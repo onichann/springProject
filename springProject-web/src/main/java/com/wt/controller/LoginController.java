@@ -6,7 +6,6 @@ import com.wt.core.Constants;
 import com.wt.model.LoginInfo;
 import com.wt.model.TUser;
 import com.wt.service.UserService;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,6 +19,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 @Controller
@@ -37,12 +38,12 @@ public class LoginController {
 
     @RequestMapping(value = "/loginCheck", method = {RequestMethod.POST, RequestMethod.GET})
     @NeedLogin(value = false)
-    public ModelAndView loginCheck(LoginInfo loginInfo, HttpServletRequest request, HttpSession session, HttpServletResponse response) {
+    public ModelAndView loginCheck(LoginInfo loginInfo, HttpServletRequest request, HttpSession session, HttpServletResponse response) throws UnsupportedEncodingException {
         TUser tUser= userService.selectOneUser(loginInfo.getUsername(), loginInfo.getPassword());
         if (tUser==null) return new ModelAndView("login", "error", "用户名密码错误");
         session.setAttribute(Constants.user,tUser);
         Gson gson=new Gson();
-        Cookie cookie=new Cookie(Constants.userCookie, StringEscapeUtils.escapeHtml4(gson.toJson(tUser)));
+        Cookie cookie=new Cookie(Constants.userCookie, URLEncoder.encode(gson.toJson(tUser),"UTF-8"));
         cookie.setMaxAge(30*60);
         cookie.setPath("/");
         response.addCookie(cookie);
