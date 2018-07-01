@@ -28,7 +28,7 @@ public class LoginController {
     @Resource(name="userService")
     private UserService userService;
 
-    @RequestMapping(value = {"/index", "/loginPage", "/"})
+    @RequestMapping(value = { "/loginPage", "/"})
     @NeedLogin(value = false)
     public String loginPage() {
         return "login";
