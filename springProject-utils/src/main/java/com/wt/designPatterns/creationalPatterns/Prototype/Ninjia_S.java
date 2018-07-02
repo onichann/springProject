@@ -3,6 +3,8 @@ package com.wt.designPatterns.creationalPatterns.Prototype;
 import java.io.*;
 
 public class Ninjia_S implements Serializable {
+
+    private static final long serialVersionUID = 2169380777227967513L;
     private String name;//名字
     private int rp;//血槽
     private Ninjutsu ninjutsu;//忍术

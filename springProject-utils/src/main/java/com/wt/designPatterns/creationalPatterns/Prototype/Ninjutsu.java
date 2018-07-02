@@ -3,6 +3,8 @@ package com.wt.designPatterns.creationalPatterns.Prototype;
 import java.io.Serializable;
 
 public class Ninjutsu implements Serializable{
+    private static final long serialVersionUID=111221L;
+
     private int damage;//破坏力
     private String name;
 

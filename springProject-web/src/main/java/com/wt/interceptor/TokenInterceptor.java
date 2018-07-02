@@ -14,6 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 
 public class TokenInterceptor extends HandlerInterceptorAdapter {
     private static Logger logger=Logger.getLogger(TokenInterceptor.class);
@@ -46,7 +47,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
                             if(Constants.userCookie.equals(cookie.getName())){
 //                                userCookie=true;
                                 String userStr=cookie.getValue();
-                                user = JSON.parseObject(userStr,TUser.class);
+                                user = JSON.parseObject(URLDecoder.decode(userStr,"UTF-8"),TUser.class);
                                 request.getSession().setAttribute(Constants.user,user);
                                 break;
                             }

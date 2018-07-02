@@ -12,7 +12,6 @@ public class Test {
             kk= (Ninjia_A) kakaxi.clone();
 
             System.out.println(kakaxi.getNinjutsu()==kk.getNinjutsu());
-            // System.out.println(kk.getNinjutsu().getName()+"  "+kk.getNinjutsu().getDamage());
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -21,6 +20,7 @@ public class Test {
         Ninjia_S nn;
         try {
             nn= (Ninjia_S) naturo.dclone();
+//            nn= CloneUtils.clone(naturo);
             System.out.println(naturo.getNinjutsu()==nn.getNinjutsu());
         } catch (Exception e) {
             e.printStackTrace();
