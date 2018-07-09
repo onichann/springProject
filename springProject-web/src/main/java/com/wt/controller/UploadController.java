@@ -27,7 +27,7 @@ public class UploadController {
     @RequestMapping(value="/upload",method={RequestMethod.POST})
     @ResponseBody
     @NeedLogin(false)
-    public Map updateItems(@RequestParam(value = "file",required = false) List<MultipartFile> files, @RequestParam(value = "map",required = false) Map params) {
+    public Map updateItems(@RequestParam(value = "file") List<MultipartFile> files, @RequestParam(value = "map",required = false) Map params) {
         Map map=new HashMap<>();
         try {
            long  startTime=System.currentTimeMillis();
