@@ -17,10 +17,10 @@
     <span style="color: red; ">${error}</span>
 </c:if>
 <form action="<c:url value="/login/loginCheck"/>" method="post">
-    用户名:<input type="text" name="username">
+    用户名:<input type="text" name="username" value="admin">
     <br>
     密码：
-    <input type="password" name="password" id="2">
+    <input type="password" name="password" id="2" value="000000">
     <br>
     <input type="submit" name="" id="1" value="登录">
 </form>

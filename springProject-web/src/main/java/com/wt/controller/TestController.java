@@ -27,7 +27,8 @@ public class TestController {
         return m;
     }
 
-    @RequestMapping(value = "/checkParamters",method = RequestMethod.POST)
+//    consumes 方法仅处理request Content-Type为“application/json”类型的请求。
+    @RequestMapping(value = "/checkParamters",method = RequestMethod.POST,consumes="application/json")
     @ResponseBody
     @NeedLogin(false)
     public Object test(@RequestBody TestModel testModel) throws UnsupportedEncodingException {

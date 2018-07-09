@@ -61,6 +61,7 @@
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-redis:1.8.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-keyvalue:1.2.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:1.13.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.apache.activemq:activemq-all:5.15.4" />
         </element>
       </element>
       <element id="directory" name="META-INF">
