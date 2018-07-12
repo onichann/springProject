@@ -12,17 +12,25 @@
     <!--JMS厂商提供的ConnectionFactory -->
     <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
         <constructor-arg name="brokerURL" value="tcp://127.0.0.1:61616"/>
+        <constructor-arg name="userName" value="admin"/>
+        <constructor-arg name="password" value="admin"/>
     </bean>
-    <!--Spring对ConnectionFactory的封装 -->
-    <bean id="activeMQConnectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+    <!-- 配置JMS连接工长 -->
+    <bean id="activeMQConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
         <property name="targetConnectionFactory" ref="targetConnectionFactory"/>
+        <property name="sessionCacheSize" value="100" />
     </bean>
 
     <!-- 配置JMS template -->
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="activeMQConnectionFactory"/>
+        <property name="defaultDestination" ref="test-queue" />
+        <property name="receiveTimeout" value="10000" />
+        <!-- true是topic，false是queue，默认是false，此处显示写出false -->
+        <property name="pubSubDomain" value="false" />
     </bean>
-    <!-- 配置destination对象 -->
+
+    <!-- 定义消息队列（Queue） -->
     <bean id="test-queue" class="org.apache.activemq.command.ActiveMQQueue" scope="prototype">
         <constructor-arg name="name" value="test-queue"/>
     </bean>

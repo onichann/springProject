@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import javax.jms.*;
+import java.io.IOException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:applicationContext.xml")
@@ -30,5 +31,10 @@ public class ActiveMQTest {
                 return textMessage;
             }
         });
+    }
+
+    @Test
+    public void testReceiver() throws IOException {
+        System.in.read();
     }
 }

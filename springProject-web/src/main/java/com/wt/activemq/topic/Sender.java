@@ -45,6 +45,7 @@ public class Sender {
         producer.close();
         session.close();
         connection.close();
+
     }
 
 }
