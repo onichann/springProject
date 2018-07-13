@@ -58,5 +58,5 @@
     <import resource="applicationContext-redis.xml"/>
     <!--<import resource="applicationContext-quartzRAM.xml"/>-->
     <import resource="applicationContext-quartzJDBC.xml"/>
-    <import resource="applicationContext-activeMQ.xml"/>
+    <!--<import resource="applicationContext-activeMQ.xml"/>-->
 </beans>

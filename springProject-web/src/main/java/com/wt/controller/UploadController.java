@@ -3,10 +3,7 @@ package com.wt.controller;
 import com.wt.annotation.NeedLogin;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -24,7 +21,7 @@ public class UploadController {
     private String filePath;
 
 
-    @RequestMapping(value="/upload",method={RequestMethod.POST})
+    @PostMapping(value="/upload")
     @ResponseBody
     @NeedLogin(false)
     public Map updateItems(@RequestParam(value = "file") List<MultipartFile> files, @RequestParam(value = "map",required = false) Map params) {
