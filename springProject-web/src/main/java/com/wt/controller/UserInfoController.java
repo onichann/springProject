@@ -1,5 +1,9 @@
 package com.wt.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.wt.annotation.NeedLogin;
 import com.wt.common.SpringCatch;
 import com.wt.core.IDUtils;
 import com.wt.model.TUser;
@@ -11,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -49,8 +51,6 @@ public class UserInfoController {
         return new ModelAndView("userList").addObject("userList",users);
     }
 
-
-
     @RequestMapping("/toUpdate")
     public String toUpdate(@RequestParam(value = "id" ,defaultValue = "0")String id, Model model){
         TUser user=userService.selectUserById(id);
@@ -74,30 +74,21 @@ public class UserInfoController {
         return new ModelAndView("userList","userList",users);
     }
 
-    @RequestMapping(value="/upload",method={RequestMethod.POST})
+    /**
+     * 测试分页插件
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping("/test")
     @ResponseBody
-    public Map updateItems(@RequestParam("file") MultipartFile picture,@RequestParam("fileId") String fileId) {
-        Map map=new HashMap<>();
-        try {
-            // 把图片保存到图片目录下
-            // 保存图片，这个图片有的时候文件名可能会重复，你保存多了会把原来的图片给覆盖掉，这就不太合适了。
-            // 所以为每个文件生成一个新的文件名
-            long  startTime=System.currentTimeMillis();
-            String picName = UUID.randomUUID().toString();
-            // 截取文件的扩展名(如.jpg)
-            String oriName = picture.getOriginalFilename();
-            String extName = oriName.substring(oriName.lastIndexOf("."));
-            // 保存文件
-            picture.transferTo(new File("H:\\temp\\images\\" + picName + extName));
-            long  endTime=System.currentTimeMillis();
-            System.out.println("运行时间："+String.valueOf(endTime-startTime)+"ms");
-            map.put("success",true);
-        } catch (IOException e) {
-            e.printStackTrace();
-            map.put("success",false);
-        }
-        return map;
+    @NeedLogin(false)
+    public Object testSelect(@RequestParam(value = "pageNo",defaultValue = "1")int pageNo,@RequestParam("pageSize") int pageSize){
+        Page<TUser> page=PageHelper.startPage(pageNo,pageSize);
+        List<TUser> list=userService.selectAllUsers();
+        PageInfo<TUser> info = new PageInfo<TUser>(page);
+        System.out.println(info.toString());
+        return list;
     }
-
 
 }

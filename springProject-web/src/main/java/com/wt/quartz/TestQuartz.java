@@ -1,6 +1,6 @@
 package com.wt.quartz;
 
-import com.wt.quartz.job.TestJob;
+import com.wt.quartz.job.TestQuartzJob;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
@@ -9,7 +9,7 @@ public class TestQuartz {
     private static void startScheduler() throws SchedulerException {
 
         Scheduler scheduler=StdSchedulerFactory.getDefaultScheduler();
-        JobDetail jobDetail= JobBuilder.newJob(TestJob.class).withIdentity("myjob","myjobGroup").build();
+        JobDetail jobDetail= JobBuilder.newJob(TestQuartzJob.class).withIdentity("myjob","myjobGroup").build();
         Trigger trigger=TriggerBuilder.newTrigger()
                 .withIdentity("testTrigger","testTrigger")
                 //.withSchedule(CronScheduleBuilder.cronSchedule("0/2 * * * * ?").withMisfireHandlingInstructionFireAndProceed())

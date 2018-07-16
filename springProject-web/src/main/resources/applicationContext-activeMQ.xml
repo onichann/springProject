@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+
+    <!-- 定义ReDelivery(重发机制)机制 ，重发时间间隔是100毫秒，最大重发次数是3次 http://www.kuqin.com/shuoit/20140419/339344.html -->
+    <bean id="activeMQRedeliveryPolicy" class="org.apache.activemq.RedeliveryPolicy">
+        <!--是否在每次尝试重新发送失败后,增长这个等待时间 -->
+        <property name="useExponentialBackOff" value="true"/>
+        <!--重发次数,默认为6次   这里设置为1次 -->
+        <property name="maximumRedeliveries" value="1"/>
+        <!--重发时间间隔,默认为1秒 -->
+        <property name="initialRedeliveryDelay" value="1000"/>
+        <!--第一次失败后重新发送之前等待500毫秒,第二次失败再等待500 * 2毫秒,这里的2就是value -->
+        <property name="backOffMultiplier" value="2"/>
+        <!--最大传送延迟，只在useExponentialBackOff为true时有效（V5.5），假设首次重连间隔为10ms，倍数为2，那么第
+            二次重连时间间隔为 20ms，第三次重连时间间隔为40ms，当重连时间间隔大的最大重连时间间隔时，以后每次重连时间间隔都为最大重连时间间隔。 -->
+        <property name="maximumRedeliveryDelay" value="1000"/>
+    </bean>
+
+    <!--JMS厂商提供的ConnectionFactory -->
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <constructor-arg name="brokerURL" value="tcp://127.0.0.1:61616"/>
+        <constructor-arg name="userName" value="admin"/>
+        <constructor-arg name="password" value="admin"/>
+        <property name="redeliveryPolicy" ref="activeMQRedeliveryPolicy" />  <!-- 引用重发机制 -->
+    </bean>
+    <!-- 配置JMS连接工长 -->
+    <bean id="activeMQConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <property name="targetConnectionFactory" ref="targetConnectionFactory"/>
+        <property name="sessionCacheSize" value="100" />
+    </bean>
+
+    <!-- 配置JMS template -->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="activeMQConnectionFactory"/>
+        <property name="defaultDestination" ref="test-queue" />
+        <property name="receiveTimeout" value="10000" />
+        <!-- true是topic，false是queue，默认是false，此处显示写出false -->
+        <property name="pubSubDomain" value="false" />
+    </bean>
+
+    <!-- 定义消息队列（Queue） -->
+    <bean id="test-queue" class="org.apache.activemq.command.ActiveMQQueue" scope="prototype">
+        <constructor-arg name="name" value="test-queue"/>
+    </bean>
+
+    <bean id="test-topic" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg name="name" value="test-topic"/>
+    </bean>
+
+    <!-- MessageListener对象 -->
+    <bean id="myMessageListener" class="com.wt.activemq.listener.MyMessageListener"/>
+    <!-- 配置接收消息者 -->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="activeMQConnectionFactory" />
+        <property name="destination" ref="test-queue"/>
+        <property name="messageListener" ref="myMessageListener" />
+        <!--触发重发机制-->
+        <property name="sessionTransacted" value="true"/>
+    </bean>
+</beans>
