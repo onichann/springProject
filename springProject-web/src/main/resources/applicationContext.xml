@@ -29,7 +29,7 @@
             <list>
                 <value>classpath:dataSourse.properties</value>
                 <value>classpath*:redis.properties</value>
-                <value>setting.properties</value>
+                <value>classpath:setting.properties</value>
             </list>
         </property>
     </bean>
