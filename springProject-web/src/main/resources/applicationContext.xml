@@ -29,6 +29,7 @@
             <list>
                 <value>classpath:dataSourse.properties</value>
                 <value>classpath*:redis.properties</value>
+                <value>setting.properties</value>
             </list>
         </property>
     </bean>
@@ -47,8 +48,8 @@
           <!--p:minIdle="${minIdle}"-->
     <!--/>-->
 
-    <!--<util:properties id="dbconfig" location="classpath*:dataSourse.properties"/>-->
-    <!--用@value-->
+    <util:properties id="setting" location="classpath*:setting.properties"/>
+    <!--用@Value("#{setting.uploadDir}")-->
 
 
 

@@ -20,7 +20,7 @@ public class InitDataListener implements ServletContextListener {
         WebApplicationContext context =WebApplicationContextUtils.getWebApplicationContext(servletContextEvent.getServletContext());
         UserServiceImpl userServiceBean= context.getBean("userService", UserServiceImpl.class);
         logger.info("监听到信息:"+userServiceBean);
-        context.getAutowireCapableBeanFactory().autowireBean(this);
+        //context.getAutowireCapableBeanFactory().autowireBean(this);
         logger.info("监听到信息:"+userService);
     }
 

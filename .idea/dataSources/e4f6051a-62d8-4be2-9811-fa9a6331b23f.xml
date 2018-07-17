@@ -809,36 +809,643 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="204" parent="2" name="t_user">
+    <table id="204" parent="2" name="qrtz_blob_triggers">
       <Engine>InnoDB</Engine>
     </table>
-    <column id="205" parent="204" name="featid">
+    <table id="205" parent="2" name="qrtz_calendars">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="206" parent="2" name="qrtz_cron_triggers">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="207" parent="2" name="qrtz_fired_triggers">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="208" parent="2" name="qrtz_job_details">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="209" parent="2" name="qrtz_locks">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="210" parent="2" name="qrtz_paused_trigger_grps">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="211" parent="2" name="qrtz_scheduler_state">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="212" parent="2" name="qrtz_simple_triggers">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="213" parent="2" name="qrtz_simprop_triggers">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="214" parent="2" name="qrtz_triggers">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="215" parent="2" name="t_user">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="216" parent="204" name="SCHED_NAME">
+      <Position>1</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="217" parent="204" name="TRIGGER_NAME">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="218" parent="204" name="TRIGGER_GROUP">
+      <Position>3</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="219" parent="204" name="BLOB_DATA">
+      <Position>4</Position>
+      <DataType>blob|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="220" parent="204" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="221" parent="204" name="qrtz_blob_triggers_ibfk_1">
+      <ColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</ColNames>
+      <RefSchemaName>db</RefSchemaName>
+      <RefTableName>qrtz_triggers</RefTableName>
+      <RefColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</RefColNames>
+    </foreign-key>
+    <column id="222" parent="205" name="SCHED_NAME">
+      <Position>1</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="223" parent="205" name="CALENDAR_NAME">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="224" parent="205" name="CALENDAR">
+      <Position>3</Position>
+      <DataType>blob|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="225" parent="205" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHED_NAME
+CALENDAR_NAME</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="226" parent="206" name="SCHED_NAME">
+      <Position>1</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="227" parent="206" name="TRIGGER_NAME">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="228" parent="206" name="TRIGGER_GROUP">
+      <Position>3</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="229" parent="206" name="CRON_EXPRESSION">
+      <Position>4</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="230" parent="206" name="TIME_ZONE_ID">
+      <Position>5</Position>
+      <DataType>varchar(80)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="231" parent="206" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="232" parent="206" name="qrtz_cron_triggers_ibfk_1">
+      <ColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</ColNames>
+      <RefSchemaName>db</RefSchemaName>
+      <RefTableName>qrtz_triggers</RefTableName>
+      <RefColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</RefColNames>
+    </foreign-key>
+    <column id="233" parent="207" name="SCHED_NAME">
+      <Position>1</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="234" parent="207" name="ENTRY_ID">
+      <Position>2</Position>
+      <DataType>varchar(95)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="235" parent="207" name="TRIGGER_NAME">
+      <Position>3</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="236" parent="207" name="TRIGGER_GROUP">
+      <Position>4</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="237" parent="207" name="INSTANCE_NAME">
+      <Position>5</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="238" parent="207" name="FIRED_TIME">
+      <Position>6</Position>
+      <DataType>bigint(13)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="239" parent="207" name="SCHED_TIME">
+      <Position>7</Position>
+      <DataType>bigint(13)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="240" parent="207" name="PRIORITY">
+      <Position>8</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="241" parent="207" name="STATE">
+      <Position>9</Position>
+      <DataType>varchar(16)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="242" parent="207" name="JOB_NAME">
+      <Position>10</Position>
+      <DataType>varchar(200)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="243" parent="207" name="JOB_GROUP">
+      <Position>11</Position>
+      <DataType>varchar(200)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="244" parent="207" name="IS_NONCONCURRENT">
+      <Position>12</Position>
+      <DataType>varchar(1)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="245" parent="207" name="REQUESTS_RECOVERY">
+      <Position>13</Position>
+      <DataType>varchar(1)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="246" parent="207" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHED_NAME
+ENTRY_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="247" parent="208" name="SCHED_NAME">
+      <Position>1</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="248" parent="208" name="JOB_NAME">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="249" parent="208" name="JOB_GROUP">
+      <Position>3</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="250" parent="208" name="DESCRIPTION">
+      <Position>4</Position>
+      <DataType>varchar(250)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="251" parent="208" name="JOB_CLASS_NAME">
+      <Position>5</Position>
+      <DataType>varchar(250)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="252" parent="208" name="IS_DURABLE">
+      <Position>6</Position>
+      <DataType>varchar(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="253" parent="208" name="IS_NONCONCURRENT">
+      <Position>7</Position>
+      <DataType>varchar(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="208" name="IS_UPDATE_DATA">
+      <Position>8</Position>
+      <DataType>varchar(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="255" parent="208" name="REQUESTS_RECOVERY">
+      <Position>9</Position>
+      <DataType>varchar(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="256" parent="208" name="JOB_DATA">
+      <Position>10</Position>
+      <DataType>blob|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="257" parent="208" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHED_NAME
+JOB_NAME
+JOB_GROUP</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="258" parent="209" name="SCHED_NAME">
+      <Position>1</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="259" parent="209" name="LOCK_NAME">
+      <Position>2</Position>
+      <DataType>varchar(40)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="260" parent="209" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHED_NAME
+LOCK_NAME</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="261" parent="210" name="SCHED_NAME">
+      <Position>1</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="262" parent="210" name="TRIGGER_GROUP">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="263" parent="210" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHED_NAME
+TRIGGER_GROUP</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="264" parent="211" name="SCHED_NAME">
+      <Position>1</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="265" parent="211" name="INSTANCE_NAME">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="266" parent="211" name="LAST_CHECKIN_TIME">
+      <Position>3</Position>
+      <DataType>bigint(13)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="267" parent="211" name="CHECKIN_INTERVAL">
+      <Position>4</Position>
+      <DataType>bigint(13)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="268" parent="211" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHED_NAME
+INSTANCE_NAME</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="269" parent="212" name="SCHED_NAME">
+      <Position>1</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="270" parent="212" name="TRIGGER_NAME">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="271" parent="212" name="TRIGGER_GROUP">
+      <Position>3</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="272" parent="212" name="REPEAT_COUNT">
+      <Position>4</Position>
+      <DataType>bigint(7)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="273" parent="212" name="REPEAT_INTERVAL">
+      <Position>5</Position>
+      <DataType>bigint(12)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="274" parent="212" name="TIMES_TRIGGERED">
+      <Position>6</Position>
+      <DataType>bigint(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="275" parent="212" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="276" parent="212" name="qrtz_simple_triggers_ibfk_1">
+      <ColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</ColNames>
+      <RefSchemaName>db</RefSchemaName>
+      <RefTableName>qrtz_triggers</RefTableName>
+      <RefColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</RefColNames>
+    </foreign-key>
+    <column id="277" parent="213" name="SCHED_NAME">
+      <Position>1</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="278" parent="213" name="TRIGGER_NAME">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="279" parent="213" name="TRIGGER_GROUP">
+      <Position>3</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="280" parent="213" name="STR_PROP_1">
+      <Position>4</Position>
+      <DataType>varchar(512)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="281" parent="213" name="STR_PROP_2">
+      <Position>5</Position>
+      <DataType>varchar(512)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="282" parent="213" name="STR_PROP_3">
+      <Position>6</Position>
+      <DataType>varchar(512)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="283" parent="213" name="INT_PROP_1">
+      <Position>7</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="284" parent="213" name="INT_PROP_2">
+      <Position>8</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="285" parent="213" name="LONG_PROP_1">
+      <Position>9</Position>
+      <DataType>bigint(20)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="286" parent="213" name="LONG_PROP_2">
+      <Position>10</Position>
+      <DataType>bigint(20)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="287" parent="213" name="DEC_PROP_1">
+      <Position>11</Position>
+      <DataType>decimal(13,4)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="288" parent="213" name="DEC_PROP_2">
+      <Position>12</Position>
+      <DataType>decimal(13,4)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="289" parent="213" name="BOOL_PROP_1">
+      <Position>13</Position>
+      <DataType>varchar(1)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="290" parent="213" name="BOOL_PROP_2">
+      <Position>14</Position>
+      <DataType>varchar(1)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="291" parent="213" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="292" parent="213" name="qrtz_simprop_triggers_ibfk_1">
+      <ColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</ColNames>
+      <RefSchemaName>db</RefSchemaName>
+      <RefTableName>qrtz_triggers</RefTableName>
+      <RefColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</RefColNames>
+    </foreign-key>
+    <column id="293" parent="214" name="SCHED_NAME">
+      <Position>1</Position>
+      <DataType>varchar(120)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="294" parent="214" name="TRIGGER_NAME">
+      <Position>2</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="295" parent="214" name="TRIGGER_GROUP">
+      <Position>3</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="296" parent="214" name="JOB_NAME">
+      <Position>4</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="297" parent="214" name="JOB_GROUP">
+      <Position>5</Position>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="298" parent="214" name="DESCRIPTION">
+      <Position>6</Position>
+      <DataType>varchar(250)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="299" parent="214" name="NEXT_FIRE_TIME">
+      <Position>7</Position>
+      <DataType>bigint(13)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="300" parent="214" name="PREV_FIRE_TIME">
+      <Position>8</Position>
+      <DataType>bigint(13)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="301" parent="214" name="PRIORITY">
+      <Position>9</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="302" parent="214" name="TRIGGER_STATE">
+      <Position>10</Position>
+      <DataType>varchar(16)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="303" parent="214" name="TRIGGER_TYPE">
+      <Position>11</Position>
+      <DataType>varchar(8)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="304" parent="214" name="START_TIME">
+      <Position>12</Position>
+      <DataType>bigint(13)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="305" parent="214" name="END_TIME">
+      <Position>13</Position>
+      <DataType>bigint(13)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="306" parent="214" name="CALENDAR_NAME">
+      <Position>14</Position>
+      <DataType>varchar(200)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="307" parent="214" name="MISFIRE_INSTR">
+      <Position>15</Position>
+      <DataType>smallint(2)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="308" parent="214" name="JOB_DATA">
+      <Position>16</Position>
+      <DataType>blob|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="309" parent="214" name="SCHED_NAME">
+      <ColNames>SCHED_NAME
+JOB_NAME
+JOB_GROUP</ColNames>
+    </index>
+    <key id="310" parent="214" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>SCHED_NAME
+TRIGGER_NAME
+TRIGGER_GROUP</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="311" parent="214" name="qrtz_triggers_ibfk_1">
+      <ColNames>SCHED_NAME
+JOB_NAME
+JOB_GROUP</ColNames>
+      <RefSchemaName>db</RefSchemaName>
+      <RefTableName>qrtz_job_details</RefTableName>
+      <RefColNames>SCHED_NAME
+JOB_NAME
+JOB_GROUP</RefColNames>
+    </foreign-key>
+    <column id="312" parent="215" name="featid">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="206" parent="204" name="username">
+    <column id="313" parent="215" name="username">
       <Position>2</Position>
       <DataType>varchar(32)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="207" parent="204" name="password">
+    <column id="314" parent="215" name="password">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="208" parent="204" name="userid">
+    <column id="315" parent="215" name="userid">
       <Position>4</Position>
       <DataType>varchar(32)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="209" parent="204" name="age">
+    <column id="316" parent="215" name="age">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="210" parent="204" name="PRIMARY">
+    <key id="317" parent="215" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>featid</ColNames>
       <Primary>1</Primary>

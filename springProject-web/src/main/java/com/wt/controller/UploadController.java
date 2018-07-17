@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,9 @@ import java.util.UUID;
 @RequestMapping("/upload")
 public class UploadController {
 
-    @Value("E:\\temp\\testUpload\\")
+    @Value("#{setting.uploadDir}")
+//    @Value("#{T(java.io.File).separator}")
+//    @Value("${uploadDir}")
     private String filePath;
 
 
@@ -62,26 +65,41 @@ public class UploadController {
         return map;
     }
 
+    @RequestMapping(value = "/download")
+    @NeedLogin(false)
     public ResponseEntity<byte[]> download(HttpServletRequest request,
                                            @RequestParam("fileName") String fileName,
                                            @RequestHeader("User-Agent") String userAgent,
                                            Model model) throws IOException {
+//        if(true) throw new SpringWebException("sss");
 //        构建File
         File file=new File(filePath+File.separator+fileName);
         if(!file.exists()) throw new SpringWebException("文件不存在");
+//        ok表示HTTP中的状态 200
         ResponseEntity.BodyBuilder bodyBuilder=ResponseEntity.ok();
+//        内容长度
         bodyBuilder.contentLength(file.length());
+//        application/oct-stream :二进制流数据（最常见的文件下载）
         bodyBuilder.contentType(MediaType.APPLICATION_OCTET_STREAM);
         fileName= URLEncoder.encode(fileName,"UTF-8");
-        HttpHeaders httpHeaders=new HttpHeaders();
-
+//        设置实际的响应文件名，告诉浏览器文件要用于“下载”和“保存”
         if(userAgent.indexOf("MSIE")>-1){
-            httpHeaders.setContentDispositionFormData("attachement",fileName);
-            bodyBuilder.headers(httpHeaders);
+//            如果是IE，只需要使用UTF-8字符集进行URL编码即可
+            bodyBuilder.header("Content-Disposition","attachment;filename="+fileName);
         }else{
-            bodyBuilder.headers(httpHeaders);
+//            其他浏览器，需要说明编码的字符集  filename后面有个*号，在UTF-8后面有两个单引号
+            bodyBuilder.header("Content-Disposition","attachment;filename*=UTF-8''"+fileName);
         }
         return bodyBuilder.body(FileUtils.readFileToByteArray(file));
 
+    }
+
+//    当前controller有异常处理规则后ControllerAdvice不会进入
+    @ExceptionHandler(SpringWebException.class)
+    @ResponseStatus(HttpStatus.REQUEST_TIMEOUT)
+    @ResponseBody
+    public String errorHandler(Exception e){
+        System.out.println(e.getMessage());
+        return e.getMessage();
     }
 }

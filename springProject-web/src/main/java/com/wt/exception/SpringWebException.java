@@ -3,7 +3,7 @@ package com.wt.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.BAD_GATEWAY)
+@ResponseStatus(value = HttpStatus.BAD_GATEWAY,reason = "Spring项目出现异常")
 public class SpringWebException extends  RuntimeException {
 
 
