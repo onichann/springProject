@@ -7,7 +7,7 @@ package com.wt.designPatterns.creationalPatterns.Singleton;
  * 100的线程可以同时if判断，理论消耗的时间只有一个if判断的时间。所以如果面对高并发的情况，
  * 而且采用的是懒汉模式，最好的选择就是双重判断加同步的方式。
  */
-public class DoubleCheck {
+public  class DoubleCheck {
     private static  volatile DoubleCheck doubleCheck;
     private DoubleCheck() {
 

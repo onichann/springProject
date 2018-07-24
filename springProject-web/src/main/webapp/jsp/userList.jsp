@@ -42,12 +42,13 @@
         </c:forEach>
 
     </table>
-<form id="formid" target="frame1" action="<%=request.getContextPath()%>/uploadController/upload" method="post" enctype="multipart/form-data" >
+<form id="formid" target="frame1" action="<%=request.getContextPath()%>/upload/upload" method="post" enctype="multipart/form-data" >
     <input name="fileId" value="1111" type="hidden"/>
     <input type="file" name="file"  multiple/>
     <input type="submit" value="submit" multiple="multiple">
 </form>
 <iframe name="frame1" frameborder="0" height="40"></iframe>
+<a href="<%=request.getContextPath()%>/upload/download?fileName=53dedd94-160d-4319-aacc-03f852640666.txt">下载</a>
 </body>
 <script>
     // alert(1);

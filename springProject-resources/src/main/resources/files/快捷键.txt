@@ -1,0 +1,1 @@
+轻松通过快捷键找到MyBatis中对应的Mapper和XML，CTRL+ALT+B

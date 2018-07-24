@@ -15,7 +15,7 @@
 
     <!--输出到文件的appender,公共的,按日期生成新文件-->
     <appender name="DEFAULT-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="H:/temp/logs/conmmon-default.log"/>
+        <param name="File" value="E:/temp/logs/conmmon-default.log"/>
         <param name="Append" value="true"/><!--是否项目重启 继续保存之前日志 -->
         <param name="threshold" value="all"/><!--纪录所有类型日志, -->
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
@@ -28,7 +28,7 @@
 
     <!--输出到文件的appender, info日志-->
     <appender name="INFO-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="H:/temp/logs/conmmon-info.log"/>
+        <param name="File" value="E:/temp/logs/conmmon-info.log"/>
         <param name="Append" value="true"/><!--是否项目重启 继续保存之前日志 -->
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
         <param name="encoding" value="utf-8"/><!--编码 -->
@@ -45,7 +45,7 @@
 
     <!--输出到文件的appender,error日志-->
     <appender name="ERROR-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="H:/temp/logs/conmmon-error.log"/>
+        <param name="File" value="E:/temp/logs/conmmon-error.log"/>
         <param name="Append" value="true"/><!--是否项目重启 继续保存之前日志 -->
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
         <param name="encoding" value="utf-8"/><!--编码 -->
@@ -62,7 +62,7 @@
 
     <!--输出到文件的appender,warn日志-->
     <appender name="WARN-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="H:/temp/logs/conmmon-warn.log"/>
+        <param name="File" value="E:/temp/logs/conmmon-warn.log"/>
         <param name="Append" value="true"/><!--是否项目重启 继续保存之前日志 -->
         <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
         <param name="encoding" value="utf-8"/><!--编码 -->

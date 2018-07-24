@@ -1,0 +1,18 @@
+Congratulations, ShadowsocksR server install completed!
+Your Server IP        :  35.236.185.119
+Your Server Port      :  12345
+Your Password         :  wutong0127
+Your Protocol         :  auth_sha1_v4
+Your obfs             :  tls1.2_ticket_auth
+Your Encryption Method:  rc4-md5
+
+Your QR Code: (For ShadowsocksR Windows, Android clients only)
+ ssr://MzUuMjM2LjE4NS4xMTk6MTIzNDU6YXV0aF9zaGExX3Y0OnJjNC1tZDU6dGxzMS4yX3RpY2tldF9hdXRoOmQzVjBiMjVuTURFeU53Lz9vYmZzcGFyYW09
+Your QR Code has been saved as a PNG file path:
+ /root/shadowsocks_r_qr.png
+
+Welcome to visit: https://teddysun.com/486.html
+Enjoy it!
+
+
+ios  Potatso Lite  美国apple id

@@ -170,7 +170,13 @@
                     <include>**/*.xml</include>
                 </includes>
             </resource>
+            <!--配置后setting.properties可以读取pom的properties-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
         </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
