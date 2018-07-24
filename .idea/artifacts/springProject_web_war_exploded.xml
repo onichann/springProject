@@ -5,7 +5,6 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="springProject-web" />
-          <element id="module-output" name="springProject-resources" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.3.14.RELEASE" />
