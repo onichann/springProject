@@ -36,6 +36,7 @@ public class LogAspect {
     }
 
     @Around("within(com.wt..*)&&@annotation(log)")
+//    @Around("logPonintCut()")
     public Object doAround(ProceedingJoinPoint proceedingJoinPoint,Log log){
         Object result=null;
         try {

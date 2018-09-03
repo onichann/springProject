@@ -30,9 +30,10 @@ import java.util.UUID;
 @RequestMapping("/upload")
 public class UploadController {
 
-    @Value("#{setting.uploadDir}")
+//    @Value("#{setting['app.test']}")
 //    @Value("#{T(java.io.File).separator}")
 //    @Value("${uploadDir}")
+    @Value("#{setting.uploadDir}")
     private String filePath;
 
 
