@@ -26,6 +26,7 @@
         <!--mybatis 版本-->
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis.spring.version>1.2.3</mybatis.spring.version>
+
         <commons-logging.version>1.2</commons-logging.version>
         <!-- redis 版本 -->
         <redis.version>2.9.0</redis.version>
