@@ -1,11 +1,10 @@
 package pojo;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.codec.digest.Md5Crypt;
+import org.apache.commons.io.IOUtils;
 import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -14,10 +13,7 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.jasypt.util.password.PasswordEncryptor;
-import org.jasypt.util.password.rfc2307.RFC2307MD5PasswordEncryptor;
 import org.springframework.http.MediaType;
-import sun.security.provider.MD5;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
@@ -28,9 +24,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLDecoder;
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.Iterator;
 
 
 public class DangAnTest {
@@ -42,6 +35,10 @@ public class DangAnTest {
 //        getArchiveTree("建设用地报批","案卷档号","E090-YW0201-2003-0008");
 //        getArchiveFile("91909cad66a5a1e80166a6265a73001f");
 //        tiffToJPEGByImageIO("C:\\E090-YW0201-2003-0008-001.tif");
+
+        //土地储备
+//        callArchive("土地储备","案卷档号","1106-YW1401-2008-0001");
+//        getArchiveFile("40288cc467398fe401673e3da26a052f");
     }
 
     private static void callArchive(String acname,String field,String value) throws IOException {
@@ -60,8 +57,15 @@ public class DangAnTest {
         System.out.println(json);
     }
 
+    /**
+     * HttpHeaders，ContentType，MediaType
+     * @param id
+     * @throws IOException
+     */
     private static void callArchiveFile(String id) throws IOException {
-        Request.Post("http://"+IP+":8080/rams/systemAction!getArchiveFile.action")
+        String url="http://127.0.0.1:8080/file/download3";
+//        String url="http://"+IP+":8080/rams/systemAction!getArchiveFile.action";
+        Request.Post(url)
                 .connectTimeout(2000)
                 .socketTimeout(2000)
                 .body(MultipartEntityBuilder.create()
@@ -73,18 +77,31 @@ public class DangAnTest {
                     StatusLine statusLine = httpResponse.getStatusLine();
                     HttpEntity entity = httpResponse.getEntity();
                     if(statusLine.getStatusCode()==200){
-//                        String content = EntityUtils.toString(entity);
-//                        System.out.println(content);
-                        Header[] allHeaders = httpResponse.getAllHeaders();
-                        Arrays.stream(allHeaders).forEach(h-> System.out.println(h.getName()));
-
+//                        ContentType contentType = ContentType.getOrDefault(entity);
+                        Header header = httpResponse.getHeaders(HttpHeaders.CONTENT_TYPE)[0];
+                        if(header.getValue().contains(ContentType.APPLICATION_JSON.getMimeType())){
+                            System.out.println(EntityUtils.toString(httpResponse.getEntity()));//输出json字符串
+                            return null;
+                        }
+                        Header headerContentDispostion = httpResponse.getHeaders(org.springframework.http.HttpHeaders.CONTENT_DISPOSITION)[0];
+                        String filename="";
+                        if (headerContentDispostion!=null) {//从头中获取文件名字
+                            filename = headerContentDispostion.getElements()[0].getParameterByName("filename").getValue();
+                            filename = URLDecoder.decode(filename, "utf-8");
+                        }
+                        String filePath = "e:\\"+filename; // 文件路径
+                        File file = new File(filePath);
+                        FileOutputStream outputStream = new FileOutputStream(file);
+                        InputStream inputStream = httpResponse.getEntity().getContent();
+                        IOUtils.write(IOUtils.toByteArray(inputStream),outputStream);
+                        IOUtils.closeQuietly(inputStream);
+                        IOUtils.closeQuietly(outputStream);
                     }else{
-                        EntityUtils.consume(entity);
                         System.out.println("code:"+statusLine.getStatusCode());
                     }
+                    EntityUtils.consume(entity);
                     return null;
                 });
-//        System.out.println(json);
     }
 
     public static void getArchiveTree(String acname,String field,String value){
@@ -123,8 +140,10 @@ public class DangAnTest {
     }
 
     public static void getArchiveFile(String id){
+        String url="http://127.0.0.1:8080/file/download3";
         HttpClient httpClient1 = HttpClients.createDefault();
-        HttpPost post = new HttpPost("http://"+IP+":8080/rams/systemAction!getArchiveFile.action");
+//        "http://"+IP+":8080/rams/systemAction!getArchiveFile.action"
+        HttpPost post = new HttpPost(url);
         MultipartEntityBuilder mEntityBuilder = MultipartEntityBuilder.create();
         mEntityBuilder.addTextBody("code", DigestUtils.md5Hex(id+"md5key"));
         mEntityBuilder.addTextBody("id", id);
@@ -147,7 +166,7 @@ public class DangAnTest {
                     filename= URLDecoder.decode(filename, "utf-8");
                 }
                 //httpResponse1.getHeaders()
-                String filePath = "c:\\"+filename; // 文件路径
+                String filePath = "e:\\"+filename; // 文件路径
                 File file = new File(filePath);
                 FileOutputStream outputStream = new FileOutputStream(file);
                 InputStream inputStream = httpResponse1.getEntity()
