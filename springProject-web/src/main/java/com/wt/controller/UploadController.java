@@ -1,7 +1,7 @@
 package com.wt.controller;
 
 import com.wt.annotation.NeedLogin;
-import com.wt.designPatterns.creationalPatterns.Builder.Builder;
+import com.wt.springboot.designPatterns.creationalPatterns.Builder.Builder;
 import com.wt.exception.SpringWebException;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
