@@ -10,8 +10,6 @@
 
     <modules>
         <module>springProject-web</module>
-        <module>springProject-utils</module>
-        <module>springProject-resources</module>
     </modules>
 
     <name>springProject-parent</name>
