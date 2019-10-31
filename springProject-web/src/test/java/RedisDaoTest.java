@@ -1,6 +1,5 @@
 import com.alibaba.fastjson.JSON;
 import com.wt.common.SpringCatch;
-import com.wt.core.IDUtils;
 import com.wt.dao.Impl.RedisDaoImpl;
 import com.wt.manager.RedisDataSourceManager;
 import com.wt.manager.RedisManager;
@@ -27,7 +26,7 @@ public class RedisDaoTest {
     @Test
     public void testRedisDaoImpl(){
         TUser tUser=SpringCatch.getApplicationContext().getBean("tUser",TUser.class);
-        tUser.setFeatid(IDUtils.getUUID());
+        tUser.setFeatid("111");
         tUser.setUserid("iriya");
         tUser.setPassword("000000");
         tUser.setUsername("伊利亚");

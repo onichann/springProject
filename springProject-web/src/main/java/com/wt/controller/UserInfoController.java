@@ -5,7 +5,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wt.annotation.NeedLogin;
 import com.wt.common.SpringCatch;
-import com.wt.core.IDUtils;
 import com.wt.model.TUser;
 import com.wt.service.UserService;
 import org.apache.log4j.Logger;
@@ -39,7 +38,7 @@ public class UserInfoController {
         TUser tUser= SpringCatch.getApplicationContext().getBean("tUser",TUser.class);
         TUser tUser2= SpringCatch.getApplicationContext().getBean("tUser",TUser.class);
         Logger.getLogger(UserInfoController.class).info("=="+(tUser==tUser2));
-        String uuid= IDUtils.getUUID();
+        String uuid= "1010";
         tUser.setFeatid(uuid);
         tUser.setUsername(username);
         tUser.setPassword(password);
