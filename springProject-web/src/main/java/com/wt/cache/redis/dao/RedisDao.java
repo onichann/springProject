@@ -1,4 +1,4 @@
-package com.wt.dao;
+package com.wt.cache.redis.dao;
 
 import com.wt.model.TUser;
 

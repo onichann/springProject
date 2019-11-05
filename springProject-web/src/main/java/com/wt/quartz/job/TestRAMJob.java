@@ -11,9 +11,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 
-public class TestSpringRAMJob extends QuartzJobBean {
+public class TestRAMJob extends QuartzJobBean {
 
-    private Logger logger=Logger.getLogger(TestSpringRAMJob.class);
+    private Logger logger=Logger.getLogger(TestRAMJob.class);
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

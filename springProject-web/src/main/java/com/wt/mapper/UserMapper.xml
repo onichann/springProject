@@ -10,7 +10,7 @@
 		<!--<result property="password" column="password" javaType="String" jdbcType="VARCHAR"/>-->
 	<!--</resultMap>-->
 
-	<select id="selectOneUser"  resultType="TUser">
+	<select id="selectOneUser"  resultType="com.wt.model.TUser">
 		select * from t_user where username=#{userName} and password=#{passWord}
 	</select>
 

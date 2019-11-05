@@ -12,7 +12,7 @@ public class SpringCatch implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.ctx=applicationContext;
+        ctx=applicationContext;
     }
 
     public static ApplicationContext getApplicationContext(){

@@ -19,6 +19,7 @@ import java.net.URLDecoder;
 public class TokenInterceptor extends HandlerInterceptorAdapter {
     private static Logger logger=Logger.getLogger(TokenInterceptor.class);
 
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if(handler instanceof HandlerMethod){
             //session获取用户

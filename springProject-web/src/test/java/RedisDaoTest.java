@@ -1,8 +1,8 @@
 import com.alibaba.fastjson.JSON;
 import com.wt.common.SpringCatch;
-import com.wt.dao.Impl.RedisDaoImpl;
-import com.wt.manager.RedisDataSourceManager;
-import com.wt.manager.RedisManager;
+import com.wt.cache.redis.dao.Impl.RedisDaoImpl;
+import com.wt.cache.redis.RedisDataSourceManager;
+import com.wt.cache.redis.RedisManager;
 import com.wt.model.TUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;

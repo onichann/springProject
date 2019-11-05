@@ -10,7 +10,7 @@ import java.util.Date;
  */
 @PersistJobDataAfterExecution
 @DisallowConcurrentExecution
-public class TestQuartzJob implements Job {
+public class TestJDBCJob2 implements Job {
     public boolean isRunning = false;
 
     @Override

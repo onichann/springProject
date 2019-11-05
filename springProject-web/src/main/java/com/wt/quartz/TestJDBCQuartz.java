@@ -1,15 +1,15 @@
 package com.wt.quartz;
 
-import com.wt.quartz.job.TestQuartzJob;
+import com.wt.quartz.job.TestJDBCJob2;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
-public class TestQuartz {
+public class TestJDBCQuartz {
 
     private static void startScheduler() throws SchedulerException {
 
         Scheduler scheduler=StdSchedulerFactory.getDefaultScheduler();
-        JobDetail jobDetail= JobBuilder.newJob(TestQuartzJob.class).withIdentity("myjob","myjobGroup").build();
+        JobDetail jobDetail= JobBuilder.newJob(TestJDBCJob2.class).withIdentity("myjob","myjobGroup").build();
         Trigger trigger=TriggerBuilder.newTrigger()
                 .withIdentity("testTrigger","testTrigger")
                 //.withSchedule(CronScheduleBuilder.cronSchedule("0/2 * * * * ?").withMisfireHandlingInstructionFireAndProceed())
@@ -21,7 +21,7 @@ public class TestQuartz {
     }
 
     public static void main(String[] args) throws SchedulerException {
-        new TestQuartz().startScheduler();
+        startScheduler();
 //        System.out.println(new Date());
 //        System.out.println(LocalDateTime.now().plusSeconds(10));
 //        Date startTime = nextGivenSecondDate(null, 10);

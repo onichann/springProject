@@ -1,7 +1,7 @@
-package com.wt.dao.Impl;
+package com.wt.cache.redis.dao.Impl;
 
 import com.alibaba.fastjson.JSON;
-import com.wt.dao.RedisDao;
+import com.wt.cache.redis.dao.RedisDao;
 import com.wt.model.TUser;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;

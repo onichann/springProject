@@ -1,6 +1,5 @@
-package com.wt.manager;
+package com.wt.cache.redis;
 
-import com.wt.cache.redis.RedisDataSource;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
